@@ -1,0 +1,13 @@
+### Send POST request with json body
+POST http://localhost:3001/task/
+Content-Type: application/json
+
+{
+  "title": "test",
+  "body" : "test",
+  "signatories" : ["testa", "testb"]
+}
+###
+GET http://localhost:3001/task/
+Set-Cookie: "access_token="
+Set-Cookie: "refresh_token="

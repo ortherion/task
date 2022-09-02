@@ -1,0 +1,58 @@
+app:
+    name: task-service
+    debug: true
+    environment: development
+    version: 0.1
+
+auth:
+    host: 0.0.0.0
+    port:
+    maxConnectionIdle: 5 # Minutes
+    timeout: 15 # Seconds
+    maxConnectionAge: 5 # Minutes
+    secretKey:
+
+analytics:
+    host: 0.0.0.0
+    port:
+    maxConnectionIdle: 5 # Minutes
+    timeout: 15 # Seconds
+    maxConnectionAge: 5 # Minutes
+
+kafka:
+    capacity:
+    topic: topics
+    groupID:
+    broker:
+
+topics:
+
+
+rest:
+    host: 0.0.0.0
+    port:
+    debugPort:
+    ShutdownTimeout: 5 # Seconds
+    readTimeout: 15 # Seconds
+    writeTimeout: 15 # Seconds
+    idleTimeout: 60 # Seconds
+
+metrics:
+    host: 0.0.0.0
+    port:
+    path: /metrics
+
+database:
+    host: 0.0.0.0
+    port:
+    user:
+    password:
+    name:
+    sslmode:
+    migrations:
+    driver:
+
+jaeger:
+    service:
+    host: 0.0.0.0
+    port:

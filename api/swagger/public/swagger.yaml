@@ -1,0 +1,317 @@
+basePath: /task
+definitions:
+  models.Signatory:
+    properties:
+      email:
+        type: string
+      id:
+        type: string
+      status:
+        type: integer
+      task_id:
+        type: string
+    type: object
+  models.Task:
+    properties:
+      body:
+        type: string
+      created_date:
+        type: string
+      creator_id:
+        type: string
+      deleted_date:
+        type: string
+      id:
+        type: string
+      isDeleted:
+        type: boolean
+      signatories:
+        items:
+          $ref: '#/definitions/models.Signatory'
+        type: array
+      stage:
+        type: integer
+      title:
+        type: string
+      updated_date:
+        type: string
+    type: object
+host: localhost:3001
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: Signed token protects our admin endpoints
+  title: Task-service
+  version: 1.1.0
+paths:
+  /:
+    delete:
+      description: Delete a Task
+      operationId: DeleteTask
+      parameters:
+      - description: access token
+        in: header
+        name: access_token
+        required: true
+        type: string
+      - description: refresh token
+        in: header
+        name: refresh_token
+        required: true
+        type: string
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: 400 bad request
+          schema:
+            type: string
+        "403":
+          description: 403 forbidden
+          schema:
+            type: string
+        "404":
+          description: 404 page not found
+          schema:
+            type: string
+        "500":
+          description: 500 internal error
+          schema:
+            type: string
+      summary: Delete a Task
+      tags:
+      - task
+    get:
+      description: Get List of all tasks
+      operationId: ListTask
+      parameters:
+      - description: access token
+        in: header
+        name: access_token
+        required: true
+        type: string
+      - description: refresh token
+        in: header
+        name: refresh_token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            items:
+              $ref: '#/definitions/models.Task'
+            type: array
+        "400":
+          description: 400 bad request
+          schema:
+            type: string
+        "403":
+          description: 403 forbidden
+          schema:
+            type: string
+        "404":
+          description: 404 page not found
+          schema:
+            type: string
+        "500":
+          description: 500 internal error
+          schema:
+            type: string
+      summary: Get All Tasks
+      tags:
+      - task
+    patch:
+      consumes:
+      - application/json
+      description: Update a Task Description, returning task's id
+      operationId: UpdateTask
+      parameters:
+      - description: access token
+        in: header
+        name: access_token
+        required: true
+        type: string
+      - description: refresh token
+        in: header
+        name: refresh_token
+        required: true
+        type: string
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/models.Task'
+        "400":
+          description: 400 bad request
+          schema:
+            type: string
+        "403":
+          description: 403 forbidden
+          schema:
+            type: string
+        "404":
+          description: 404 page not found
+          schema:
+            type: string
+        "500":
+          description: 500 internal error
+          schema:
+            type: string
+      summary: Update a Task
+      tags:
+      - task
+    post:
+      consumes:
+      - application/json
+      description: Accept a Task Description, returning task's id
+      operationId: CreateTask
+      parameters:
+      - description: access token
+        in: header
+        name: access_token
+        required: true
+        type: string
+      - description: refresh token
+        in: header
+        name: refresh_token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/models.Task'
+        "400":
+          description: 400 bad request
+          schema:
+            type: string
+        "403":
+          description: 403 forbidden
+          schema:
+            type: string
+        "404":
+          description: 404 page not found
+          schema:
+            type: string
+        "500":
+          description: 500 internal error
+          schema:
+            type: string
+      summary: Create a Task
+      tags:
+      - task
+  /Reject/:
+    put:
+      description: Reject the Task
+      operationId: Reject
+      parameters:
+      - description: access token
+        in: header
+        name: access_token
+        required: true
+        type: string
+      - description: refresh token
+        in: header
+        name: refresh_token
+        required: true
+        type: string
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: 400 bad request
+          schema:
+            type: string
+        "403":
+          description: 403 forbidden
+          schema:
+            type: string
+        "404":
+          description: 404 page not found
+          schema:
+            type: string
+        "500":
+          description: 500 internal error
+          schema:
+            type: string
+      summary: Reject the Task
+      tags:
+      - task
+  /approve/:
+    put:
+      description: Approve the Task
+      operationId: Approve
+      parameters:
+      - description: access token
+        in: header
+        name: access_token
+        required: true
+        type: string
+      - description: refresh token
+        in: header
+        name: refresh_token
+        required: true
+        type: string
+      - description: id
+        in: query
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: 400 bad request
+          schema:
+            type: string
+        "403":
+          description: 403 forbidden
+          schema:
+            type: string
+        "404":
+          description: 404 page not found
+          schema:
+            type: string
+        "500":
+          description: 500 internal error
+          schema:
+            type: string
+      summary: Approve the Task
+      tags:
+      - task
+schemes:
+- http
+securityDefinitions:
+  Auth:
+    type: basic
+swagger: "2.0"

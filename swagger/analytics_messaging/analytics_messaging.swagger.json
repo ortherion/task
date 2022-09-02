@@ -1,0 +1,123 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "analytics_messaging/analytics_messaging.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "AnalyticsMsgService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/analytics_messaging.AnalyticsMsgService/SendMessage": {
+      "post": {
+        "operationId": "AnalyticsMsgService_SendMessage",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/analytics_messagingResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/analytics_messagingEventMessage"
+            }
+          }
+        ],
+        "tags": [
+          "AnalyticsMsgService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "analytics_messagingEventMessage": {
+      "type": "object",
+      "properties": {
+        "taskUuid": {
+          "type": "string"
+        },
+        "eventType": {
+          "$ref": "#/definitions/analytics_messagingEventType"
+        },
+        "userUuid": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "analytics_messagingEventType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "CREATED",
+        "SENT_TO",
+        "APPROVED_BY",
+        "REJECTED_BY",
+        "SIGNED",
+        "SENT"
+      ],
+      "default": "UNKNOWN"
+    },
+    "analytics_messagingResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "typeUrl": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

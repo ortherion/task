@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package analytics_messaging;
+
+option go_package = "gitlab.com/g6834/team17/api/analytics_messaging;analytics_messaging";
+
+
+import "google/protobuf/timestamp.proto";
+
+service AnalyticsMsgService {
+  rpc SendMessage (EventMessage) returns (Response) {};
+}
+
+message EventMessage {
+  string task_uuid = 1;
+  EventType event_type = 2;
+  string user_uuid = 3;
+  google.protobuf.Timestamp timestamp = 4;
+}
+
+message Response {
+  bool success = 1;
+}
+
+enum EventType {
+  UNKNOWN = 0;
+  CREATED = 1;
+  SENT_TO = 2;
+  APPROVED_BY = 3;
+  REJECTED_BY = 4;
+  SIGNED = 5;
+  SENT = 6;
+}
